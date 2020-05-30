@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Family Photo Share</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="view_photos">View Photos</string>
+    <string name="group_page">Group Page</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
