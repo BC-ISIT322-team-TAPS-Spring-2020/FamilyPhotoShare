@@ -16,30 +16,43 @@
         android:paddingBottom="10dp"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="18sp" />
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/takePicture"
-        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:text="@string/take_photo" />
 
     <Button
         android:id="@+id/viewPictures"
-        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:text="@string/view_photos" />
 
     <Button
         android:id="@+id/groupPage"
-        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:text="@string/group_page" />
 
     <Button
         android:id="@+id/signout"
-        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
         android:text="@string/sign_out" />
 </LinearLayout>
 
