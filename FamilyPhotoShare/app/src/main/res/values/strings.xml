@@ -4,4 +4,7 @@
     <string name="view_photos">View Photos</string>
     <string name="group_page">Group Page</string>
     <string name="sign_out">Sign Out</string>
+    <string name="create_group">Create Group</string>
+    <string name="join_group">Join Group</string>
+    <string name="upload_pictures">Upload Pictures</string>
 </resources>
