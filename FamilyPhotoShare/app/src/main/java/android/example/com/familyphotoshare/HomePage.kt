@@ -19,6 +19,7 @@ class HomePage : AppCompatActivity() {
 
         //Button click
         viewPictures.setOnClickListener {
+            //this checks runtime permissions
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
                     PackageManager.PERMISSION_DENIED
@@ -27,10 +28,12 @@ class HomePage : AppCompatActivity() {
                     val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE);
                     requestPermissions(permissions, PERMISSION_CODE)
                 } else {
+                    //permission has been granted
                     pickImageFromGallery();
 
                 }
             } else {
+                //for systems running on Marshmallow and above
                 pickImageFromGallery();
             }
         }
