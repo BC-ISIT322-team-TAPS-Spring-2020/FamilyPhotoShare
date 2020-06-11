@@ -6,17 +6,17 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_home_page.*
-import java.util.jar.Manifest
 
 class HomePage : AppCompatActivity() {
 
     private val PERMISSION_CODE = 1000;
     private val IMAGE_CAPTURE_CODE = 1001;
+    private val IMAGE_PICK_CODE = 1002;
     var image_uri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,9 +94,12 @@ class HomePage : AppCompatActivity() {
         when (requestCode) {
             PERMISSION_CODE -> {
                 if (grantResults.size > 0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED) {
-                    //openCamera()
+                    PackageManager.PERMISSION_GRANTED && permissions[0] == "android.permission.READ_EXTERNAL_STORAGE") {
                     pickImageFromGallery()
+                }
+                else if (grantResults.size > 0 && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED && permissions[0] == "android.permission.CAMERA") {
+                    openCamera()
                 }
                 else {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
@@ -108,6 +111,9 @@ class HomePage : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            imageView.setImageURI(data?.data)
+        }
+        else if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_CAPTURE_CODE) {
             imageView.setImageURI(data?.data)
         }
     }
