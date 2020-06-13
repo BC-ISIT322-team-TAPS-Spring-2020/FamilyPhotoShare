@@ -8,22 +8,38 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_home_page.*
+import java.io.IOException
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
 
 class HomePage : AppCompatActivity() {
+    private lateinit var imageView: ImageView
+    private lateinit var imageButton: Button
+    //private lateinit var sendButton: Button
+    private var imageData: ByteArray? = null
+    //private val postURL: String = "https://photos.google.com/albums"
+    private val postURL: String = "https://ptsv2.com/t/54odo-1576291398/post" // remember to use your own api
 
-    private val PERMISSION_CODE = 1000;
-    private val IMAGE_CAPTURE_CODE = 1001;
-    private val IMAGE_PICK_CODE = 1002;
-    var image_uri: Uri? = null
+    companion object {
+        private const val IMAGE_PICK_CODE = 998
+        private const val UPLOAD_IMAGE_PICK_CODE = 999
+        private const val PERMISSION_CODE = 1000;
+        private const val IMAGE_CAPTURE_CODE = 1001;
+        var image_uri: Uri? = null
+    }
+
+//    private val IMAGE_PICK_CODE = 1002;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
 
-        //Button click
+        //Button click Photos
         viewPictures.setOnClickListener {
             //this checks runtime permissions
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -44,6 +60,7 @@ class HomePage : AppCompatActivity() {
             }
         }
 
+        //Button click Camera
         takePicture.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(android.Manifest.permission.CAMERA)
@@ -62,6 +79,57 @@ class HomePage : AppCompatActivity() {
                 openCamera()
             }
         }
+
+        //imageView = findViewById(R.id.imageView)
+
+//        imageButton = findViewById(R.id.imageButton)
+//        imageButton.setOnClickListener {
+//            launchGallery()
+//        }
+//        sendButton = findViewById(R.id.sendButton)
+//        sendButton.setOnClickListener {
+//            uploadImage()
+//        }
+
+        sendButton.setOnClickListener {
+            Toast.makeText(this, "sendButton clicked", Toast.LENGTH_SHORT).show()
+            uploadImage()
+        }
+    }
+
+//    private fun launchGallery() {
+//        val intent = Intent(Intent.ACTION_PICK)
+//        intent.type = "image/*"
+//        startActivityForResult(intent, IMAGE_PICK_CODE)
+//    }
+
+    private fun uploadImage() {
+        imageData?: return
+        val request = object : VolleyFileUploadRequest(
+            Method.POST,
+            postURL,
+            Response.Listener {
+                println("response is: $it")
+            },
+            Response.ErrorListener {
+                println("error is: $it")
+            }
+        ) {
+            override fun getByteData(): MutableMap<String, FileDataPart> {
+                var params = HashMap<String, FileDataPart>()
+                params["imageFile"] = FileDataPart("image", imageData!!, "jpeg")
+                return params
+            }
+        }
+        Volley.newRequestQueue(this).add(request)
+    }
+
+    @Throws(IOException::class)
+    private fun createImageData(uri: Uri) {
+        val inputStream = contentResolver.openInputStream(uri)
+        inputStream?.buffered()?.use {
+            imageData = it.readBytes()
+        }
     }
 
     private fun openCamera() {
@@ -78,15 +146,6 @@ class HomePage : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
-    }
-
-    companion object {
-        //image pick code
-        private val IMAGE_PICK_CODE = 1000;
-
-        //Permission Code
-        private val PERMISSION_CODE = 1001;
-
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -109,6 +168,13 @@ class HomePage : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == UPLOAD_IMAGE_PICK_CODE) {
+            val uri = data?.data
+            if (uri != null) {
+                imageView.setImageURI(uri)
+                createImageData(uri)
+            }
+        }
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             imageView.setImageURI(data?.data)
