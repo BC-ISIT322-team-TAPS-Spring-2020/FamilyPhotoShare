@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "387128842326",
+    "firebase_url": "https://family-photo-share-6dc29.firebaseio.com",
+    "project_id": "family-photo-share-6dc29",
+    "storage_bucket": "family-photo-share-6dc29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387128842326:android:58a490a83b91ae72f3c3f7",
+        "android_client_info": {
+          "package_name": "android.example.com.familyphotoshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "387128842326-pipkp91mm0l4b5labor57c99oevqc4le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Z1BYPsLO5uYizaCCR4krZLRv6Kg1_Ks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387128842326-pipkp91mm0l4b5labor57c99oevqc4le.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
