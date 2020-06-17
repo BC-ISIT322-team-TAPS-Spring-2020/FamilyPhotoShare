@@ -43,7 +43,7 @@ class HomePage : AppCompatActivity() {
         setContentView(R.layout.activity_home_page)
 
         //        var file = "1592346486601.jpg"
-        var filepath = "/storage/emulated/0/Pictures/1592346486601.jpg"
+        var filepath = "Uploaded_File.jpg"
 
         storageReference = FirebaseStorage.getInstance().getReference(filepath);
 
