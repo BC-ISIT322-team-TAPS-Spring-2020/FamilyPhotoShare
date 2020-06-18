@@ -26,6 +26,8 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomePage : AppCompatActivity() {
     lateinit var storageReference:StorageReference
@@ -42,10 +44,13 @@ class HomePage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
 
-        //        var file = "1592346486601.jpg"
-        var filepath = "Uploaded_File.jpg"
+        val sdf = SimpleDateFormat("dd-M-yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
 
-        storageReference = FirebaseStorage.getInstance().getReference(filepath);
+        //        var file = "1592346486601.jpg"
+        var file = "Uploaded_File.jpg"
+
+        storageReference = FirebaseStorage.getInstance().getReference(currentDate + " " + file);
 
         //family-photo-share-41b26
         //AIzaSyBG0SNhEX7bTfKcekJ6ffbEM5a8dX7uprQ

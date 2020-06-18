@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "387128842326",
-    "firebase_url": "https://family-photo-share-6dc29.firebaseio.com",
-    "project_id": "family-photo-share-6dc29",
-    "storage_bucket": "family-photo-share-6dc29.appspot.com"
+    "project_number": "748703041598",
+    "firebase_url": "https://family-photo-share-41b26.firebaseio.com",
+    "project_id": "family-photo-share-41b26",
+    "storage_bucket": "family-photo-share-41b26.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:387128842326:android:58a490a83b91ae72f3c3f7",
+        "mobilesdk_app_id": "1:748703041598:android:ab5ee8dcf2aec6385fe96f",
         "android_client_info": {
           "package_name": "android.example.com.familyphotoshare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "387128842326-pipkp91mm0l4b5labor57c99oevqc4le.apps.googleusercontent.com",
+          "client_id": "748703041598-pfsj0h9am5f7s9g8grvjpvhl1at61e06.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB5Z1BYPsLO5uYizaCCR4krZLRv6Kg1_Ks"
+          "current_key": "AIzaSyBG0SNhEX7bTfKcekJ6ffbEM5a8dX7uprQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "387128842326-pipkp91mm0l4b5labor57c99oevqc4le.apps.googleusercontent.com",
+              "client_id": "748703041598-pfsj0h9am5f7s9g8grvjpvhl1at61e06.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
